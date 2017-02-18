@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+var args = process.argv;
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+var command = 'line';
+var isDump = false;
+
+if (args.length > 2) {
+  command = 'line' + args[2];
+}
+
+if (args.length > 3) {
+  if (args[3] == '-d' || args[2] == '-d') {
+    isDump = true;
+  }
+}
+
+process.stdin.on('data', function(line) {
+  var output = eval(command);
+  if (typeof output === 'string' || output instanceof String) {
+    process.stdout.write(output);
+  } else {
+    if (isDump) {
+      console.log(output);
+    }
+  }
+});
