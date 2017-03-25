@@ -4,5 +4,7 @@
 
 ```
 echo 'hello world' | n '.split(" ").join(",")'
+
+cat z.diff  | n '.match(/^\+/) && console.log(line)';
 ```
 

@@ -17,13 +17,15 @@ if (args.length > 3) {
   }
 }
 
-process.stdin.on('data', function(line) {
-  var output = eval(command);
-  if (typeof output === 'string' || output instanceof String) {
-    process.stdout.write(output);
-  } else {
-    if (isDump) {
-      console.log(output);
+process.stdin.on('data', function(data) {
+  data.split("\n").map((line) => {
+    var output = eval(command);
+    if (typeof output === 'string' || output instanceof String) {
+      process.stdout.write(output + "\n");
+    } else {
+      if (isDump) {
+        console.log(output);
+      }
     }
-  }
+  });
 });
